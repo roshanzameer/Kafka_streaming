@@ -2,17 +2,20 @@ import json
 from kafka import KafkaConsumer
 import requests
 import pandas as pd
+from time import sleep
 
 
 def consumer_instance(topic_name):
-    _consumer = None
     urls = []
     try:
         consumer = KafkaConsumer(topic_name, auto_offset_reset='earliest', bootstrap_servers=['kafka:9092'],
-                             api_version=(0,10), consumer_timeout_ms=1000)
+                             api_version=(0,10), consumer_timeout_ms=3000)
         for msg in consumer:
             urls.append((msg.value))
-
+        consumer.close()
+        sleep(5)
+        data_to_csv(urls)
+        
     except Exception as ex:
         print(ex)
 
