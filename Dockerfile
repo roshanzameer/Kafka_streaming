@@ -1,6 +1,6 @@
 # Dockerfile
 
-WORKDIR /home/deuser/
+WORKDIR /usr/app
 
 FROM python:3.6
 
