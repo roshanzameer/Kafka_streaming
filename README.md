@@ -3,3 +3,5 @@ A containerized python service to convert JSON reponse of a webpage to CSV using
 1. The 'Pythonised' Kafka plugin offered by the package Kafka-python has been invoked. 
 2. The Producer module streams the URLs to a predefined Topic.
 3. The Consumer module reads the byte-stream from the Topic, iterates over the data and builds a Pandas DataFrame which is then exported to a CSV file.
+
+NOTE: Change the KAFKA_ADVERTISED_HOST_NAME in docker-compose.yml and Bootstrap arg in Consumer.py and Producer.py IP Addr to the IP Addr of your docker machine.
