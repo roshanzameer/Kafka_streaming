@@ -2,6 +2,7 @@ import json
 from kafka import KafkaConsumer
 import requests
 import pandas as pd
+from time import sleep
 
 
 def consumer_instance(topic_name):
@@ -16,6 +17,7 @@ def consumer_instance(topic_name):
         print('reading from topic closed')
         # sleep(5)
         data_to_csv(urls)
+
 
     except Exception as ex:
         print(ex)
@@ -34,5 +36,4 @@ def data_to_csv(urls):
     df = pd.DataFrame(user_data)
     df.to_csv('/tmp/user_data.csv', index=False)
 
-
-consumer_instance('test_dock')
+consumer_instance('zylotech_test')

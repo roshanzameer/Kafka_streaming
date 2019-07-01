@@ -34,4 +34,4 @@ print('Running Producer..')
 
 kafka_producer = producer_instance()
 for url in urls:
-    publish_urls(kafka_producer, 'test_dock', 'urls', url)
+    publish_urls(kafka_producer, 'zylotech_test', 'urls', url)
