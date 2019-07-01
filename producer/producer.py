@@ -1,9 +1,11 @@
 from kafka import KafkaProducer
+import os
 
 def producer_instance():
+
     _producer = None
     try:
-        _producer = KafkaProducer(bootstrap_servers=['localhost:9092'], api_version=(0, 10))
+        _producer = KafkaProducer(bootstrap_servers=['172.17.0.1:9092'], api_version=(0, 10))
     except Exception as ex:
         print('PRODUCE_URLS', ex)
 
@@ -29,6 +31,7 @@ urls = [
 
 
 print('Running Producer..')
+
 kafka_producer = producer_instance()
 for url in urls:
-    publish_urls(kafka_producer, 'zylotech', 'urls', url)
+    publish_urls(kafka_producer, 'test_dock', 'urls', url)

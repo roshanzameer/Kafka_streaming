@@ -9,14 +9,23 @@ services:
     ports:
       - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_HOST_NAME: 172.17.0.1
 #      KAFKA_CREATE_TOPICS: "test:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-  pub-sub:
-    build: .
+  publish:
+    build: ./producer/
+    volumes:
+      - .:/tmp/
     depends_on:
       - "kafka"
-    command: python3 producer.py
-    command: python3 consumer.py
+    command: python producer.py
+
+  consume:
+    build: ./consumer/
+    volumes:
+      - .:/tmp/
+    depends_on:
+      - "publish"
+    command: python consumer.py
