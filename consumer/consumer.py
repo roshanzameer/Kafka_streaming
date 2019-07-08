@@ -36,4 +36,4 @@ def data_to_csv(urls):
     df = pd.DataFrame(user_data)
     df.to_csv('/tmp/user_data.csv', index=False)
 
-consumer_instance('zylotech_test')
+consumer_instance('my_topic')
